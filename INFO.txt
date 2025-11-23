@@ -3,8 +3,8 @@ INTEGRANTES:
 Aguilar García, Mario Alejandro 	25-1667-2023 
 Deleon Juárez, Katherine Lisseth	25-3833-2023
 Gutiérrez de la O, Daniel Mateo 	17-0800-2023 
-Mejía Diaz, Gabriela Michelle	    25-1354-2023
-Rivera Cortez, Lisbeth Beatriz	    25-0631-2023
+Mejía Diaz, Gabriela Michelle	    	25-1354-2023
+Rivera Cortez, Lisbeth Beatriz		25-0631-2023
 
 DISTRIBUCION DEL TRABAJO:
 Mario - Encargado del UserDetailsServiceImpl y base de datos
