@@ -1,33 +1,66 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# ------------------------------------------------------------------------
+# GENERAL SPRING BOOT / JAVA MAVEN
+# ------------------------------------------------------------------------
+/target/
+/.mvn/
+/bin/
+**/*.class
+/test-output/
+/build/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Maven/Gradle local files
+pom.xml.tag
+pom.xml.versionsBackup
+pom.xml.releaseBackup
+release.properties
+dependency-check-report.html
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# Logs
+*.log
+logs/
+*.war
+*.jar
+*.zip
 
-### NetBeans ###
+# ------------------------------------------------------------------------
+# IDE FILES (NetBeans, IntelliJ, VS Code)
+# ------------------------------------------------------------------------
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
-/nbdist/
+/nbuserdir/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+/dist.zip
 
-### VS Code ###
+# IntelliJ / VS Code
+.idea/
 .vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.classpath
+.project
+
+# macOS / OS Files
+.DS_Store
+
+# ------------------------------------------------------------------------
+# BASE DE DATOS Y SECRETS
+# ------------------------------------------------------------------------
+# Configuración local (ej: contraseñas de producción)
+!src/main/resources/application.properties 
+# Ignorar otras configuraciones de ambiente (si existen)
+application*.yml
+application*.properties
+.env
+
+# ------------------------------------------------------------------------
+# REGLAS PARA ARCHIVOS SUBIDOS (AVATAR)
+# ------------------------------------------------------------------------
+# 1. Ignorar TODO el contenido de la carpeta 'uploads' (las imágenes grandes)
+/uploads/*
+
+# 2. EXCEPCIÓN: Forzar la inclusión del archivo .gitkeep para que la carpeta exista.
+!/uploads/.gitkeep
