@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - Sistema Usuarios</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Sistema Usuarios</a>
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <a th:if="${isAdmin}" th:href="@{/admin/usuarios}" class="btn btn-warning btn-sm fw-bold">
+                        🛠️ Panel Admin
+                    </a>
+
+                    <form th:action="@{/logout}" method="post" class="m-0">
+                        <button type="submit" class="btn btn-outline-light btn-sm">Cerrar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card text-center shadow">
+                        <div class="card-header bg-primary text-white">
+                            Panel de Usuario
+                        </div>
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <img th:if="${usuario.avatar != null and !usuario.avatar.isEmpty()}" 
+                                     th:src="@{'/uploads/' + ${usuario.avatar}}" 
+                                     class="rounded-circle border border-3 border-primary"
+                                     style="width: 150px; height: 150px; object-fit: cover;"
+                                     alt="Avatar">
+
+                                <img th:unless="${usuario.avatar != null and !usuario.avatar.isEmpty()}" 
+                                     src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+                                     class="rounded-circle border"
+                                     style="width: 150px; height: 150px;"
+                                     alt="Default">
+                            </div>
+
+                            <h2 class="card-title">¡Hola, <span th:text="${usuario.username}">Usuario</span>!</h2>
+
+                            <hr>
+
+                            <div class="text-start d-inline-block">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Email:</strong> <span th:text="${usuario.email}"></span></li>
+                                    <li class="list-group-item"><strong>Rol:</strong> <span th:text="${usuario.rol}"></span></li>
+                                    <li class="list-group-item"><strong>Fecha Nacimiento:</strong> <span th:text="${usuario.fechaNacimiento}"></span></li>
+                                    <li class="list-group-item"><strong>Estado:</strong> 
+                                        <span th:if="${usuario.enabled}" class="badge bg-success">Habilitado</span>
+                                        <span th:unless="${usuario.enabled}" class="badge bg-danger">Deshabilitado</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br>
+                            <a th:href="@{/perfil}" class="btn btn-primary mt-3">Editar Mi Perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

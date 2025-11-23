@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="#">Panel Administrativo</a>
+        <a th:href="@{/home}" class="btn btn-outline-light btn-sm">Volver al Home</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Gestión de Usuarios</h2>
+        <a th:href="@{/admin/usuario/nuevo}" class="btn btn-primary">
+            <i class="bi bi-person-plus-fill"></i> Nuevo Usuario
+        </a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body p-0">
+            <table class="table table-hover table-striped mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="u : ${usuarios}"> 
+                    <td th:text="${u.id}">1</td>
+                    <td th:text="${u.username}">admin</td>
+                    <td th:text="${u.email}">admin@test.com</td>
+                    <td>
+                        <span th:class="${u.rol == 'ROLE_ADMIN' ? 'badge bg-warning text-dark' : 'badge bg-secondary'}" 
+                              th:text="${u.rol}">ROLE_USER</span>
+                    </td>
+                    <td>
+                        <span th:if="${u.enabled}" class="badge bg-success">Activo</span>
+                        <span th:unless="${u.enabled}" class="badge bg-danger">Inactivo</span>
+                    </td>
+                    <td>
+                        <a th:href="@{/admin/usuario/editar/{id}(id=${u.id})}" class="btn btn-sm btn-info text-white">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a th:href="@{/admin/usuario/toggle/{id}(id=${u.id})}" 
+                           th:class="${u.enabled ? 'btn btn-sm btn-danger' : 'btn btn-sm btn-success'}">
+                           <i th:class="${u.enabled ? 'bi bi-slash-circle' : 'bi bi-check-circle'}"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
